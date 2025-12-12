@@ -10,7 +10,7 @@ export default function Table({view, data, loading, onUserDeleted}) {
 
             await axios.delete(`https://67eca027aa794fb3222e43e2.mockapi.io/members/${id}`);
 
-            // เรียกฟังก์ชัน Callback เพื่ออัปเดตตาราง
+            // เมื่อเกิดการ delete user จะสั่งให้ onUserDelted() ทำงาน จาก parent component
             if (onUserDeleted) {
                 onUserDeleted();
             }
