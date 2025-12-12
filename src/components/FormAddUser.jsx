@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
-export default function FormAddUser() {
+export default function FormAddUser({onUserCreated}) {
+    const databaseURL = "https://67eca027aa794fb3222e43e2.mockapi.io/members";
     const [formData, setFormData] = useState({
         name: "",
         lastname: "",
@@ -23,20 +24,58 @@ export default function FormAddUser() {
 
         try {
             // ส่ง formData ที่เราอัพเดทเรียบร้อยแล้ว จาก function handleChange
-            await axios.post("https://memory-backend-forjsd11.onrender.com/api/users", formData);
+            await axios.post(databaseURL, formData);
+
+            // after "POST" you need to make setFormData to empty
+            setFormData({
+                name: "",
+                lastname: "",
+                position: "",
+            });
+
+            if (onUserCreated) {
+                onUserCreated();
+            }
+
         } catch (error) {
             console.log("Error creating user:", error);
+        } finally {
+            setLoading(false);
         }
     }
 
     return(
-        <form onSubmit={handleSubmit}>
-            <form className="flex gap-2">
-                <input type="text" id="name" placeholder=" Name" className="bg-white border rounded-sm" />
-                <input type="text" id="lastname" placeholder=" Last Name" className="bg-white border rounded-sm" />
-                <input type="text" id="position"  placeholder=" Position" className="bg-white border rounded-sm" />
-                <button type="submit" className="px-6 py-3 bg-indigo-600 hover:bg-white hover:text-black text-white rounded-lg shadow-lg text-lg font-semibold transition duration-300 ease-in-out cursor-pointer">Save</button>
-            </form>
+        <form onSubmit={handleSubmit} className="flex gap-2">
+            <input
+            className="bg-white border rounded-sm"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Name"
+            disabled={loading} />
+
+            <input
+            className="bg-white border rounded-sm"
+            name="lastname"
+            value={formData.lastname}
+            onChange={handleChange}
+            placeholder="Last Name"
+            disabled={loading} />
+
+            <input
+            className="bg-white border rounded-sm"
+            name="position"
+            value={formData.position}
+            onChange={handleChange}
+            placeholder="Position"
+            disabled={loading} />
+
+            <button
+            type="submit"
+            className="px-6 py-3 bg-indigo-600 hover:bg-white hover:text-black text-white rounded-lg shadow-lg text-lg font-semibold transition duration-300 ease-in-out cursor-pointer"
+            disabled={loading}>
+                Save
+            </button>
         </form>
     )
 }

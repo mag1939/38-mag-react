@@ -1,32 +1,5 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 
-export default function Table({view}) {
-    const databaseURL = "https://67eca027aa794fb3222e43e2.mockapi.io/members";
-
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(null);
-
-    const fetchData = async () => {
-        setLoading(true);
-
-        try {
-            let response = await axios.get(databaseURL)
-            setData(response.data);
-        } catch (error) {
-            console.log("Error fetching data:", error)
-        }
-        finally {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-
-    console.log(data)
+export default function Table({view, data, loading}) {
 
      return(
         <>
@@ -44,10 +17,10 @@ export default function Table({view}) {
                 </thead>
                 <tbody className="bg-white">
                     {data.map((e) => (
-                        <tr>
-                            <td key={e} className="border-2 p-3">{e.name}</td>
-                            <td key={e} className="border-2 p-3">{e.lastname}</td>
-                            <td key={e} className="border-2 p-3">{e.position}</td>
+                        <tr key={e.id}>
+                            <td className="border-2 p-3">{e.name}</td>
+                            <td className="border-2 p-3">{e.lastname}</td>
+                            <td className="border-2 p-3">{e.position}</td>
 
                             {view === "admin-home-view" &&
                                 <td className="border-2 p-3">
