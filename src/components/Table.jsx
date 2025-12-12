@@ -1,5 +1,23 @@
 
-export default function Table({view, data, loading}) {
+import axios from "axios";
+
+export default function Table({view, data, loading, onUserDeleted}) {
+
+    const handleDelete = async (id) => {
+        try {
+            const isConfirm = confirm("Are you sure? 😢");
+            if (!isConfirm) return;
+
+            await axios.delete(`https://67eca027aa794fb3222e43e2.mockapi.io/members/${id}`);
+
+            // เรียกฟังก์ชัน Callback เพื่ออัปเดตตาราง
+            if (onUserDeleted) {
+                onUserDeleted();
+            }
+        } catch (error) {
+            console.error("Error deleting user:", error);
+        }
+    }
 
      return(
         <>
@@ -24,7 +42,11 @@ export default function Table({view, data, loading}) {
 
                             {view === "admin-home-view" &&
                                 <td className="border-2 p-3">
-                                    <a className="hover:underline" href="#">Delete</a>
+                                    <a
+                                    className="hover:underline text-red-600 font-bold cursor-pointer"
+                                    onClick={() => {handleDelete(e.id)}}>
+                                        Delete
+                                    </a>
                                 </td>
                             }
                         </tr>

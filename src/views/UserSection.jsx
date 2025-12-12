@@ -27,9 +27,6 @@ export default function UserSection() {
         fetchData();
     }, []);
 
-    // console.log(fetchData)
-    // console.log(data)
-
     return(
         <div className="flex flex-col gap-4 justify-center items-center">
             <Table data={data} loading={loading}/>

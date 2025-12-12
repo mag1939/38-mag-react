@@ -33,6 +33,7 @@ export default function FormAddUser({onUserCreated}) {
                 position: "",
             });
 
+            // เมื่อเกิดการ create user ใหม่ จะสั่งให้ onUserCreated() ทำงาน จาก parent component
             if (onUserCreated) {
                 onUserCreated();
             }

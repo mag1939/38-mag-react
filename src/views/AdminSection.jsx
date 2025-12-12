@@ -28,14 +28,12 @@ export default function AdminSection({view}) {
         fetchData();
     }, []);
 
-    // console.log(fetchData)
-    // console.log(data)
-
     return(
         <div className="flex flex-col gap-4 justify-center items-center">
             <h1 className="font-semibold">Create User Here</h1>
+            {/* onUserCreated สั่งให้เรียกใช้ fetchData ซึ่งอยู่ตรง parent component นี้ มันจะทำการเรียก api เพื่อน ดึงข้อมูลลงตารางใหม่ update ค่าที่เราใส่ไปให้เห็นบนจอ*/}
             <FormAddUser onUserCreated={fetchData}/>
-            <Table view={view} data={data} loading={loading}/>
+            <Table view={view} data={data} loading={loading} onUserDeleted={fetchData}/>
         </div>
     )
 }
