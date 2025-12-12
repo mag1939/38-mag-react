@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
 
 export default function FormAddUser({onUserCreated}) {
     const databaseURL = "https://67eca027aa794fb3222e43e2.mockapi.io/members";
@@ -47,36 +49,37 @@ export default function FormAddUser({onUserCreated}) {
 
     return(
         <form onSubmit={handleSubmit} className="flex gap-2">
-            <input
-            className="bg-white border rounded-sm"
+            <Input
+            className={"bg-slate-200"}
             name="name"
             value={formData.name}
             onChange={handleChange}
             placeholder="Name"
             disabled={loading} />
 
-            <input
-            className="bg-white border rounded-sm"
+            <Input
+            className={"bg-slate-200"}
             name="lastname"
             value={formData.lastname}
             onChange={handleChange}
             placeholder="Last Name"
             disabled={loading} />
 
-            <input
-            className="bg-white border rounded-sm"
+            <Input
+            className={"bg-slate-200"}
             name="position"
             value={formData.position}
             onChange={handleChange}
             placeholder="Position"
             disabled={loading} />
 
-            <button
+            <Button
+            className={"bg-black hover:bg-white hover:text-black text-white rounded-lg shadow-lg text-lg transition duration-300 ease-in-out cursor-pointer"}
             type="submit"
-            className="px-6 py-3 bg-indigo-600 hover:bg-white hover:text-black text-white rounded-lg shadow-lg text-lg font-semibold transition duration-300 ease-in-out cursor-pointer"
+            variant="outline"
             disabled={loading}>
                 Save
-            </button>
+            </Button>
         </form>
     )
 }

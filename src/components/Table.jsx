@@ -44,6 +44,7 @@ export default function Table({view, data, loading, onUserDeleted}) {
                                 <td className="border-2 p-3">
                                     <a
                                     className="hover:underline text-red-600 font-bold cursor-pointer"
+                                    // Wrap การเรียกใช้ handleDelete(e.id) ด้วย Arrow Function เพื่อให้ React เก็บฟังก์ชันนี้ไว้เป็น Callback และเรียกใช้เมื่อมี Event คลิกเกิดขึ้นจริง
                                     onClick={() => {handleDelete(e.id)}}>
                                         Delete
                                     </a>

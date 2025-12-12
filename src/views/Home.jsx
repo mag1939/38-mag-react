@@ -24,7 +24,7 @@ export default function Home() {
     }, [location.key]);
 
     return(
-        <div className="bg-[#fbf0d9] min-h-dvh">
+        <div className="bg-slate-500 min-h-dvh">
 
             <h1 className="text-center pt-8 text-4xl font-bold">
                 {(view === "user-home-view") && "Generation Thailand Home - User View"}
@@ -46,7 +46,19 @@ export default function Home() {
                     Admin Home View
                 </ViewToggleButton>
             </div>
+            
+            <div className="flex overflow-hidden">
+                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif" alt="Gachimuchi" />
+                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif"
+                alt="Gachimuchi" />
+                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif"
+                alt="Gachimuchi" />
+                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif"
+                alt="Gachimuchi" />
+                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif"
+                alt="Gachimuchi" />
 
+            </div>
             {view === "user-home-view" && <UserSection />}
             {view === "admin-home-view" && <AdminSection view={view}/>}
         </div>
