@@ -1,10 +1,27 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ViewToggleButton from "../components/ViewToggleButton"
 import UserSection from "./UserSection";
 import AdminSection from "./AdminSection";
+import { useLocation } from "react-router-dom"; // Import useLocation
 
 export default function Home() {
     const [view, setView] = useState("");
+    const location = useLocation();
+
+    // วิธีการ reset หน้า Home เมื่อกดปุ่ม Nav Home
+    // เพิ่ม location.key เข้าไปใน Dependency Array เพื่อให้เมื่อไหร่ที่ key เปลี่ยน useEffect จะทำงาน
+    // location.key คือ unique key string ที่ได้มาทุกครั้งที่มีการคลิกปุ่ม navigate path (ในทีนี้ผมใช้ <Link to="/new-path">)
+    useEffect(() => {
+        console.log("useEffect is running. Path:", location.pathname, "Key:", location.key);
+
+        // ถ้า Path คือ "/" ให้รีเซ็ต view state เป็น ""
+        // การรีเซ็ต view นี้จะเกิดขึ้นได้ 2 กรณี:
+        // 1. กด Home จากหน้า Owner (Path เปลี่ยน)
+        // 2. กด Home ซ้ำในหน้า Home (Key เปลี่ยน)
+        if (location.pathname === "/") {
+            setView("");
+        }
+    }, [location.key]);
 
     return(
         <div className="bg-[#fbf0d9] min-h-dvh">

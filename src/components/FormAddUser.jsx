@@ -14,7 +14,7 @@ export default function FormAddUser({onUserCreated}) {
     // ทุกครั้งที่มีการ onChange มีการเปลี่ยนแปลงค่าใน form มันจะอัพเดทค่าของ formData จากการแปลงค่าใน setFormData function
     const handleChange = (e) => {
         const {name, value} = e.target;
-        setFormData((prev) => ({...prev, [name]: value,}))
+        setFormData((prev) => ({...prev, [name]: value,})) // [d]
         console.log(formData)
     }
 
