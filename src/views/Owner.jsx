@@ -1,6 +1,6 @@
 export default function Owner() {
  return(
-    <div className="bg-[#fbf0d9] min-h-dvh">
+    <div className="bg-slate-500 min-h-dvh">
         <div className="flex flex-col justify-center items-center gap-4">
             <h1 className="pt-8 text-4xl font-bold">38 Mag (แม็ก) - JSDX</h1>
             <img className="rounded-2xl border-2" src="https://media1.tenor.com/m/aBs-tJmtyQAAAAAd/gachimuchi-billy-herrington.gif" alt="Gachimuchi" />

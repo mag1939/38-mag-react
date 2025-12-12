@@ -15,9 +15,7 @@ export default function Home() {
         console.log("useEffect is running. Path:", location.pathname, "Key:", location.key);
 
         // ถ้า Path คือ "/" ให้รีเซ็ต view state เป็น ""
-        // การรีเซ็ต view นี้จะเกิดขึ้นได้ 2 กรณี:
-        // 1. กด Home จากหน้า Owner (Path เปลี่ยน)
-        // 2. กด Home ซ้ำในหน้า Home (Key เปลี่ยน)
+        // การรีเซ็ต view นี้จะเกิดขึ้นได้ โดยการกด Home ซ้ำในหน้า Home (Key มีการเปลี่ยน)
         if (location.pathname === "/") {
             setView("");
         }
@@ -46,17 +44,20 @@ export default function Home() {
                     Admin Home View
                 </ViewToggleButton>
             </div>
-            
+
             <div className="flex overflow-hidden">
-                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif" alt="Gachimuchi" />
-                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif"
-                alt="Gachimuchi" />
-                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif"
-                alt="Gachimuchi" />
-                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif"
-                alt="Gachimuchi" />
-                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif"
-                alt="Gachimuchi" />
+                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif" alt="Doro Spider" />
+                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif" alt="Doro Spider" />
+                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif" alt="Doro Spider" />
+                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif" alt="Doro Spider" />
+                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif" alt="Doro Spider" />
+                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif" alt="Doro Spider" />
+                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif" alt="Doro Spider" />
+                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif" alt="Doro Spider" />
+                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif" alt="Doro Spider" />
+                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif" alt="Doro Spider" />
+                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif" alt="Doro Spider" />
+                <img className="rounded-2xl items-center" src="https://media.tenor.com/uKgFxE-hwf0AAAAj/spider-doro.gif" alt="Doro Spider" />
 
             </div>
             {view === "user-home-view" && <UserSection />}
