@@ -8,7 +8,13 @@ export default function Home() {
 
     return(
         <div className="bg-[#fbf0d9] min-h-dvh">
-            <h1 className="text-center pt-8 text-4xl font-bold">Generation Thailand React - Assessment</h1>
+
+            <h1 className="text-center pt-8 text-4xl font-bold">
+                {(view === "user-home-view") && "Generation Thailand Home - User View"}
+                {(view === "admin-home-view") && "Generation Thailand Home - Admin View"}
+                {(view === "") && "Generation Thailand React - Assessment"}
+            </h1>
+
             <div className="flex justify-center items-center gap-x-4 pb-8 pt-8">
                 <ViewToggleButton
                 onClick={() => {
@@ -25,7 +31,7 @@ export default function Home() {
             </div>
 
             {view === "user-home-view" && <UserSection />}
-            {view === "admin-home-view" && <AdminSection />}
+            {view === "admin-home-view" && <AdminSection view={view}/>}
         </div>
     )
 }
