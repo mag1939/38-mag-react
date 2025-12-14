@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { toast } from "sonner";
+
 
 export default function FormAddUser({onUserCreated}) {
     const databaseURL = "https://67eca027aa794fb3222e43e2.mockapi.io/members";
@@ -25,7 +27,17 @@ export default function FormAddUser({onUserCreated}) {
         setLoading(true);
 
         try {
-            // ส่ง formData ที่เราอัพเดทเรียบร้อยแล้ว จาก function handleChange
+
+            // ตรวจสอบว่ามีช่องใดช่องหนึ่งเป็นช่องว่างเปล่าเพื่อไม่ให้ส่งข้อมูล with no-space or only space
+            // by using .trim() to delete any "space" around the string
+            if (formData.name.trim() === "" || formData.lastname.trim() === "" || formData.position.trim() === "") {
+                toast.warning("Please fill out all the fields, also don't put any white-space!", {
+                    className: "!bg-yellow-300 !transition !duration-300",
+                });
+                return; // หยุดการทำงานของ handleSubmit ไม่ให้ส่งข้อมูล (POST)
+            }
+
+            // ส่ง POST with formData ที่เราอัพเดทเรียบร้อยแล้ว จาก function handleChange
             await axios.post(databaseURL, formData);
 
             // after "POST" you need to make setFormData to empty
@@ -55,7 +67,8 @@ export default function FormAddUser({onUserCreated}) {
             value={formData.name}
             onChange={handleChange}
             placeholder="Name"
-            disabled={loading} />
+            disabled={loading}
+            required />
 
             <Input
             className={"bg-slate-200"}
@@ -63,7 +76,8 @@ export default function FormAddUser({onUserCreated}) {
             value={formData.lastname}
             onChange={handleChange}
             placeholder="Last Name"
-            disabled={loading} />
+            disabled={loading}
+            required />
 
             <Input
             className={"bg-slate-200"}
@@ -71,7 +85,8 @@ export default function FormAddUser({onUserCreated}) {
             value={formData.position}
             onChange={handleChange}
             placeholder="Position"
-            disabled={loading} />
+            disabled={loading}
+            required />
 
             <Button
             className={"bg-black hover:bg-white hover:text-black text-white rounded-lg shadow-lg text-lg transition duration-300 ease-in-out cursor-pointer"}
