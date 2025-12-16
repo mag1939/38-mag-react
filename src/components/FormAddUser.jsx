@@ -15,10 +15,16 @@ export default function FormAddUser({onUserCreated}) {
 
     const [loading, setLoading] = useState(null);
 
-    // ทุกครั้งที่มีการ onChange มีการเปลี่ยนแปลงค่าใน form มันจะอัพเดทค่าของ formData จากการแปลงค่าใน setFormData function
-    const handleChange = (e) => {
-        const {name, value} = e.target;
-        setFormData((prev) => ({...prev, [name]: value,})) // [d]
+    // ฟังก์ชันจัดการการเปลี่ยนแปลง: รับชื่อช่อง (name) และค่า (value) มาอัปเดต
+    const handleInputChange = (event) => {
+        const {name, value} = event.target;
+
+        // ใช้ Spread Operator (...) เพื่อคัดลอก State เดิม
+        // แล้วอัปเดตเฉพาะ Key ที่มีชื่อตรงกับ name ของ Input นั้น
+        setFormData((prevState) => ({
+            ...prevState,
+            [name]: value})) // [name] คือการใช้ Key จากตัวแปร (Computed Property Name)
+
         console.log(formData)
     }
 
@@ -37,10 +43,10 @@ export default function FormAddUser({onUserCreated}) {
                 return; // หยุดการทำงานของ handleSubmit ไม่ให้ส่งข้อมูล (POST)
             }
 
-            // ส่ง POST with formData ที่เราอัพเดทเรียบร้อยแล้ว จาก function handleChange
+            // ส่ง POST with formData ที่เราอัพเดทเรียบร้อยแล้ว จาก function handleInputChange
             await axios.post(databaseURL, formData);
 
-            // after "POST" you need to make setFormData to empty
+            // after "POST" you need to ล้างฟอร์ม
             setFormData({
                 name: "",
                 lastname: "",
@@ -65,7 +71,7 @@ export default function FormAddUser({onUserCreated}) {
             className={"bg-slate-200"}
             name="name"
             value={formData.name}
-            onChange={handleChange}
+            onChange={handleInputChange}
             placeholder="Name"
             disabled={loading}
             required />
@@ -74,7 +80,7 @@ export default function FormAddUser({onUserCreated}) {
             className={"bg-slate-200"}
             name="lastname"
             value={formData.lastname}
-            onChange={handleChange}
+            onChange={handleInputChange}
             placeholder="Last Name"
             disabled={loading}
             required />
@@ -83,7 +89,7 @@ export default function FormAddUser({onUserCreated}) {
             className={"bg-slate-200"}
             name="position"
             value={formData.position}
-            onChange={handleChange}
+            onChange={handleInputChange}
             placeholder="Position"
             disabled={loading}
             required />
