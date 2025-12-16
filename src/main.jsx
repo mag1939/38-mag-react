@@ -7,23 +7,28 @@ import Home from "./views/Home";
 import Owner from "./views/Owner";
 
 const router = createBrowserRouter(
-
-    [{
+  [{
     path: "/",
-    element: <Layout />,
-    errorElement: (
-      <div className="min-h-screen flex justify-center items-center">
-        <h1 className="text-4xl">๔๐๔ - Page Not Found 🥵🔥!</h1>
-      </div>
-    ),
+    element: <App />,
     children: [
-      {path: "/", element: <Home />},
-      {path: "owner", element: <Owner />},
+      {
+        path: "/",
+        element: <Layout />,
+        errorElement: (
+          <div className="min-h-screen flex justify-center items-center">
+            <h1 className="text-4xl">๔๐๔ - Page Not Found 🥵🔥!</h1>
+          </div>
+        ),
+        children: [
+          {path: "/", element: <Home />},
+          {path: "owner", element: <Owner />},
+        ]
+      }
     ]
-  }])
+
+  }]
+)
 
 createRoot(document.getElementById('root')).render(
-    <RouterProvider router={router}>
-        <App />
-    </RouterProvider>
+    <RouterProvider router={router} />
 )
